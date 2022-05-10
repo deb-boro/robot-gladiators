@@ -1,16 +1,18 @@
+/*player details */
 var playerName = window.prompt("What is your robot's name")
 
-var playerHealth = 1
-var playerAttack = 2
+var playerHealth = 100
+var playerAttack = 10
 var playerMoney = 10
 
-console.log(playerName, playerHealth, playerAttack)
+/*enemy details*/
+var enemyNames = ['Roborto', 'Amy Android', 'Robo Trumble']
+console.log(enemyNames)
+console.log(enemyNames[0])
+var enemyHealth = 50
+var enemyAttack = 12
 
-var enemyName = 'Roborto'
-var enemyHealth = 1
-var enemyAttack = 2
-
-var fight = function () {
+var fight = function (enemyName) {
   window.alert('Welcome to Robot Gladiators!!')
 
   var promptFight = window.prompt(
@@ -32,10 +34,9 @@ var fight = function () {
 
     if (enemyHealth <= 0) {
       window.alert(enemyName + 'has died')
-    } else
-      window.alert(enemyName + 'still has ' + enemyHealth + ' health left')(
-        (playerHealth = playerHealth - enemyAttack),
-      )
+    } else window.alert(enemyName + 'still has ' + enemyHealth + ' health left')
+
+    playerHealth = playerHealth - enemyAttack
 
     console.log(
       enemyName +
@@ -67,4 +68,6 @@ var fight = function () {
   }
 }
 
-fight()
+for (var i = 0; i < enemyNames.length; i++) {
+  fight(enemyNames[i])
+}
