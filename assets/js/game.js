@@ -12,6 +12,12 @@ console.log(enemyNames[0])
 var enemyHealth = 50
 var enemyAttack = 12
 
+//function to generate a random numeric value
+var randomNumber = function (min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1)) + 40
+  return value
+}
+
 var fight = function (enemyName) {
   // window.alert('Welcome to Robot Gladiators!!')
 
@@ -21,7 +27,9 @@ var fight = function (enemyName) {
     )
 
     if (promptFight === 'fight' || promptFight === 'FIGHT') {
-      enemyHealth = enemyHealth - playerAttack
+      var damage = randomNumber(playerAttack - 3, playerAttack)
+      enemyHealth = Math.max(0, enemyHealth - damage)
+
       console.log(
         playerName +
           ' attacked ' +
@@ -39,7 +47,8 @@ var fight = function (enemyName) {
       } else
         window.alert(enemyName + 'still has ' + enemyHealth + ' health left')
 
-      playerHealth = playerHealth - enemyAttack
+      var damage = randomNumber(enemyAttack - 3, enemyAttack)
+      playerHealth = Math.max(0, playerHealth - damage)
 
       console.log(
         enemyName +
@@ -67,7 +76,8 @@ var fight = function (enemyName) {
 
       if (confirmSkip) {
         window.alert(playerName + ' has decided to skip the fight, Good Bye')
-        playerMoney = playerMoney - 10
+        playerMoney = Math.max(0, playerMoney - 10)
+
         console.log('playerMoney', playerMoney)
         break
       } else fight()
@@ -134,7 +144,8 @@ var startGame = function () {
 
   for (var i = 0; i < enemyNames.length; i++) {
     var pickedEnemyName = enemyNames[i]
-    enemyHealth = 50
+    enemyHealth = randomNumber(40, 60)
+
     if (playerHealth > 0) {
       window.alert('Welcome to Robot Gladiators ! Round' + (i + 1))
       fight(pickedEnemyName)
